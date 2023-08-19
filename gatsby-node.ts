@@ -3,6 +3,7 @@ import path from "path"
 
 const pageTemplate = path.resolve("./src/templates/page.tsx")
 const postTemplate = path.resolve("./src/templates/post.tsx")
+const postsTemplate = path.resolve("./src/templates/posts.tsx")
 
 exports.createPages = async function ({
   actions: { createPage },
@@ -26,6 +27,7 @@ exports.createPages = async function ({
             url
           }
         }
+        totalCount
       }
     }
   `)
@@ -59,6 +61,23 @@ exports.createPages = async function ({
           },
         })
       }
+    })
+  }
+
+  const postsPerPage = 10
+
+  const numberOfPages = Math.ceil(
+    data?.allPrismicPost?.totalCount / postsPerPage
+  )
+
+  for (let i = 1; i < numberOfPages; i++) {
+    createPage({
+      path: `/${i + 1}`,
+      component: postsTemplate,
+      context: {
+        //number represents items per page
+        skip: i * postsPerPage,
+      },
     })
   }
 }

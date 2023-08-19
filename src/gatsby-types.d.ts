@@ -5066,6 +5066,11 @@ type GatsbyPrismicImageFluid_withWebpFragment = { readonly aspectRatio: number, 
 
 type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = { readonly aspectRatio: number, readonly src: string, readonly srcWebp: string, readonly srcSet: string, readonly srcSetWebp: string, readonly sizes: string };
 
+type LandingPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type LandingPageQueryQuery = { readonly allPrismicPost: { readonly edges: ReadonlyArray<{ readonly node: { readonly url: string | null, readonly last_publication_date: string, readonly data: { readonly title: string | null, readonly description: string | null } } }>, readonly pageInfo: { readonly currentPage: number, readonly pageCount: number } } };
+
 type PageQueryQueryVariables = Exact<{
   page_path: Scalars['String'];
 }>;
@@ -5080,10 +5085,17 @@ type PostQueryQueryVariables = Exact<{
 
 type PostQueryQuery = { readonly prismicPost: { readonly last_publication_date: string, readonly data: { readonly title: string | null, readonly body: ReadonlyArray<{ readonly id: string, readonly slice_type: string, readonly items: ReadonlyArray<{ readonly icon_image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null, readonly icon_link: { readonly url: string | null, readonly link_type: PrismicLinkTypeEnum | null, readonly document: { readonly id: string, readonly url: string | null } | { readonly id: string, readonly url: string | null } | null } | null }> } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null } } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly big_first_letter: boolean | null, readonly content: { readonly html: string | null } | null } }> } } | null };
 
+type PostsPageQueryQueryVariables = Exact<{
+  skip: Scalars['Int'];
+}>;
+
+
+type PostsPageQueryQuery = { readonly allPrismicPost: { readonly edges: ReadonlyArray<{ readonly node: { readonly url: string | null, readonly last_publication_date: string, readonly data: { readonly title: string | null, readonly description: string | null } } }>, readonly pageInfo: { readonly currentPage: number, readonly pageCount: number } } };
+
 type SlugsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SlugsQueryQuery = { readonly allPrismicPage: { readonly edges: ReadonlyArray<{ readonly node: { readonly url: string | null } }> }, readonly allPrismicPost: { readonly edges: ReadonlyArray<{ readonly node: { readonly url: string | null } }> } };
+type SlugsQueryQuery = { readonly allPrismicPage: { readonly edges: ReadonlyArray<{ readonly node: { readonly url: string | null } }> }, readonly allPrismicPost: { readonly totalCount: number, readonly edges: ReadonlyArray<{ readonly node: { readonly url: string | null } }> } };
 
 
 }

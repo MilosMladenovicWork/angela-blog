@@ -4,44 +4,50 @@ import Link from "./Link"
 
 export const BlogPostsPagination = ({
   page,
-  total,
+  totalPages,
 }: {
   page: number
-  total: number
-}) => (
-  <Grid
-    container
-    item
-    justifyContent="center"
-    sx={{
-      position: "fixed",
-      bottom: 0,
-      left: 0,
-    }}
-  >
+  totalPages: number
+}) => {
+  if (page === 1 && totalPages === 1) {
+    return
+  }
+  return (
     <Grid
       container
       item
       justifyContent="center"
       sx={{
-        width: "100%",
-        padding: 2,
-        backgroundColor: "background.paper",
+        position: "fixed",
+        bottom: 0,
+        left: 0,
       }}
     >
-      <Grid item>
-        <Pagination
-          count={total}
-          page={page}
-          size="small"
-          siblingCount={1}
-          hideNextButton
-          hidePrevButton
-          renderItem={item => (
-            <PaginationItem {...item} component={Link} to={`/${item.page}`} />
-          )}
-        />
+      <Grid
+        container
+        item
+        justifyContent="center"
+        sx={{
+          width: "100%",
+          padding: 2,
+          backgroundColor: "background.paper",
+        }}
+      >
+        <Grid item>
+          <Pagination
+            count={totalPages}
+            page={page}
+            size="small"
+            siblingCount={1}
+            hideNextButton
+            hidePrevButton
+            renderItem={item => {
+              const to = item.page === 1 ? "/" : `/${item.page}`
+              return <PaginationItem {...item} component={Link} to={to} />
+            }}
+          />
+        </Grid>
       </Grid>
     </Grid>
-  </Grid>
-)
+  )
+}

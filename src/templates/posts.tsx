@@ -4,9 +4,9 @@ import React, { useMemo } from "react"
 import BlogList, { BlogItemData } from "../components/BlogList"
 import { BlogPostsPagination } from "../components/BlogPostsPagination"
 
-export default function Home({
+export default function PostsPage({
   data,
-}: PageProps<Queries.LandingPageQueryQuery>) {
+}: PageProps<Queries.PostsPageQueryQuery>) {
   const items: BlogItemData[] = useMemo(() => {
     const builtItems: BlogItemData[] = []
     for (const {
@@ -48,10 +48,11 @@ export default function Home({
   )
 }
 
-export const LandingPageQuery = graphql`
-  query LandingPageQuery {
+export const PostsPageQuery = graphql`
+  query PostsPageQuery($skip: Int!) {
     allPrismicPost(
       limit: 10
+      skip: $skip
       sort: { order: DESC, fields: last_publication_date }
     ) {
       edges {

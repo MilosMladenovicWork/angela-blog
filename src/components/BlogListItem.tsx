@@ -6,9 +6,10 @@ import ListItemLink from "./ListItemLink"
 
 interface BlogListItemProps {
   id: string
-  title: string
-  shortDescription: string
-  description: string
+  title?: string | null
+  shortDescription?: string | null
+  description?: string | null
+  href: string
 }
 
 const MotionGrid = motion(Grid)
@@ -17,6 +18,7 @@ export default function BlogListItem({
   id,
   title,
   description,
+  href,
   shortDescription,
 }: BlogListItemProps) {
   return (
@@ -28,7 +30,7 @@ export default function BlogListItem({
         },
       }}
       component={ListItemLink}
-      to={`/posts/${id}`}
+      to={href}
     >
       <MotionGrid
         container
