@@ -90,6 +90,14 @@ const RichText = ({ text, textProps }: RichTextProps) => {
           },
           a: {
             component: Link,
+            props: {
+              sx: { textDecoration: "underline" },
+            },
+          },
+          img: {
+            props: {
+              style: { width: "100%" },
+            },
           },
         },
       }}

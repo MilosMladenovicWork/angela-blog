@@ -2,15 +2,19 @@ import { Link as MuiLink, LinkProps as MuiLinkProps } from "@mui/material"
 import { Link as GatsbyLink } from "gatsby-theme-material-ui"
 import React, { ForwardedRef, forwardRef } from "react"
 
-export type LinkProps = Omit<MuiLinkProps, "href"> & { to: string }
+export type LinkProps = MuiLinkProps & { to: string }
 
-const Link = (props: LinkProps, ref: ForwardedRef<HTMLAnchorElement>) => {
+const Link = (
+  { href, to, ...restProps }: LinkProps,
+  ref: ForwardedRef<HTMLAnchorElement>
+) => {
   return (
     <MuiLink
       sx={{ color: "inherit", textDecoration: "none" }}
       ref={ref}
       component={GatsbyLink}
-      {...props}
+      to={to || href}
+      {...restProps}
     />
   )
 }
