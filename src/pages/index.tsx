@@ -3,6 +3,7 @@ import { PageProps, graphql } from "gatsby"
 import React, { useMemo } from "react"
 import BlogList, { BlogItemData } from "../components/BlogList"
 import { BlogPostsPagination } from "../components/BlogPostsPagination"
+import Seo from "../components/Seo"
 
 export default function Home({
   data,
@@ -36,6 +37,7 @@ export default function Home({
       direction="column"
       justifyContent="space-between"
     >
+      <Seo />
       <Grid item sx={{ marginBottom: 16 }}>
         <BlogList items={items} />
       </Grid>
