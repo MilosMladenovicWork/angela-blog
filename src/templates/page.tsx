@@ -4,6 +4,7 @@ import { PageProps, graphql } from "gatsby"
 import React from "react"
 import { CmsSlices } from "../components/CmsSlices"
 import Link from "../components/Link"
+import Seo from "../components/Seo"
 import StaggerAnimationGrid from "../components/StaggerAnimationGrid"
 import { appearAnimationVariants } from "../gatsby-theme-material-ui-top-layout/theme"
 
@@ -13,6 +14,10 @@ export default function Page({ data }: PageProps<Queries.PageQueryQuery>) {
   return (
     <main>
       <StaggerAnimationGrid container direction="row" rowSpacing={3}>
+        <Seo
+          title={data.prismicPage?.data.title}
+          description={data.prismicPage?.data.description}
+        />
         <MotionGrid item xs={12} variants={appearAnimationVariants}>
           <Link sx={{ textDecoration: "underline" }} variant="body1" to="/">
             back
@@ -82,6 +87,8 @@ export const PageQuery = graphql`
             }
           }
         }
+        title
+        description
       }
     }
   }

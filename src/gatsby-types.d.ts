@@ -1454,6 +1454,17 @@ type ImgixFixed = {
   readonly width: Scalars['Int'];
 };
 
+type ImgixFixedFilterInput = {
+  readonly base64: InputMaybe<StringQueryOperatorInput>;
+  readonly height: InputMaybe<IntQueryOperatorInput>;
+  readonly sizes: InputMaybe<StringQueryOperatorInput>;
+  readonly src: InputMaybe<StringQueryOperatorInput>;
+  readonly srcSet: InputMaybe<StringQueryOperatorInput>;
+  readonly srcSetWebp: InputMaybe<StringQueryOperatorInput>;
+  readonly srcWebp: InputMaybe<StringQueryOperatorInput>;
+  readonly width: InputMaybe<IntQueryOperatorInput>;
+};
+
 type ImgixFluid = {
   readonly aspectRatio: Scalars['Float'];
   readonly base64: Scalars['String'];
@@ -1462,6 +1473,16 @@ type ImgixFluid = {
   readonly srcSet: Scalars['String'];
   readonly srcSetWebp: Scalars['String'];
   readonly srcWebp: Scalars['String'];
+};
+
+type ImgixFluidFilterInput = {
+  readonly aspectRatio: InputMaybe<FloatQueryOperatorInput>;
+  readonly base64: InputMaybe<StringQueryOperatorInput>;
+  readonly sizes: InputMaybe<StringQueryOperatorInput>;
+  readonly src: InputMaybe<StringQueryOperatorInput>;
+  readonly srcSet: InputMaybe<StringQueryOperatorInput>;
+  readonly srcSetWebp: InputMaybe<StringQueryOperatorInput>;
+  readonly srcWebp: InputMaybe<StringQueryOperatorInput>;
 };
 
 type ImgixParamsInput = {
@@ -2049,7 +2070,7 @@ type PotraceTurnPolicy =
   | 'right'
   | 'white';
 
-type PrismicAllDocumentTypes = PrismicPage | PrismicPost;
+type PrismicAllDocumentTypes = PrismicLayout | PrismicPage | PrismicPost;
 
 type PrismicAlternateLanguageType = {
   readonly document: Maybe<PrismicAllDocumentTypes>;
@@ -2282,6 +2303,11 @@ type PrismicImageDimensionsType = {
   readonly width: Scalars['Int'];
 };
 
+type PrismicImageDimensionsTypeFilterInput = {
+  readonly height: InputMaybe<IntQueryOperatorInput>;
+  readonly width: InputMaybe<IntQueryOperatorInput>;
+};
+
 type PrismicImageThumbnailType = {
   readonly alt: Maybe<Scalars['String']>;
   readonly copyright: Maybe<Scalars['String']>;
@@ -2335,6 +2361,401 @@ type PrismicImageThumbnailType_gatsbyImageDataArgs = {
 
 type PrismicImageThumbnailType_urlArgs = {
   imgixParams?: InputMaybe<ImgixParamsInput>;
+};
+
+type PrismicLayout = Node & {
+  readonly _previewable: Scalars['ID'];
+  readonly alternate_languages: ReadonlyArray<PrismicAlternateLanguageType>;
+  readonly children: ReadonlyArray<Node>;
+  readonly data: PrismicLayoutDataType;
+  readonly dataRaw: Scalars['JSON'];
+  readonly first_publication_date: Scalars['Date'];
+  readonly href: Scalars['String'];
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly lang: Scalars['String'];
+  readonly last_publication_date: Scalars['Date'];
+  readonly parent: Maybe<Node>;
+  readonly prismicId: Scalars['ID'];
+  readonly tags: ReadonlyArray<Scalars['String']>;
+  readonly type: Scalars['String'];
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+type PrismicLayout_first_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type PrismicLayout_last_publication_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type PrismicLayoutConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicLayoutEdge>;
+  readonly group: ReadonlyArray<PrismicLayoutGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicLayout>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicLayoutConnection_distinctArgs = {
+  field: PrismicLayoutFieldsEnum;
+};
+
+
+type PrismicLayoutConnection_groupArgs = {
+  field: PrismicLayoutFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicLayoutConnection_maxArgs = {
+  field: PrismicLayoutFieldsEnum;
+};
+
+
+type PrismicLayoutConnection_minArgs = {
+  field: PrismicLayoutFieldsEnum;
+};
+
+
+type PrismicLayoutConnection_sumArgs = {
+  field: PrismicLayoutFieldsEnum;
+};
+
+type PrismicLayoutDataLogoImageType = {
+  readonly alt: Maybe<Scalars['String']>;
+  readonly copyright: Maybe<Scalars['String']>;
+  readonly dimensions: Maybe<PrismicImageDimensionsType>;
+  /** Should be used to generate fixed-width images (i.e. the size of the image doesn't change when the size of the browser changes, and are "fixed"). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFixed fragment should be used. See the project's README for more information. */
+  readonly fixed: Maybe<ImgixFixed>;
+  /** Should be used to generate fluid-width images (i.e. images that change when the size of the browser changes). Returns data compatible with gatsby-image. Instead of accessing this data directly, the GatsbySourceImgixFluid fragment should be used. See the project's README for more information. */
+  readonly fluid: Maybe<ImgixFluid>;
+  readonly gatsbyImageData: Maybe<Scalars['JSON']>;
+  readonly localFile: Maybe<File>;
+  /** A plain imgix URL with the URL and params applied. */
+  readonly url: Maybe<Scalars['String']>;
+};
+
+
+type PrismicLayoutDataLogoImageType_fixedArgs = {
+  height: InputMaybe<Scalars['Int']>;
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+  placeholderImgixParams?: InputMaybe<ImgixParamsInput>;
+  quality: InputMaybe<Scalars['Int']>;
+  width?: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicLayoutDataLogoImageType_fluidArgs = {
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+  maxHeight: InputMaybe<Scalars['Int']>;
+  maxWidth?: InputMaybe<Scalars['Int']>;
+  placeholderImgixParams?: InputMaybe<ImgixParamsInput>;
+  srcSetBreakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+};
+
+
+type PrismicLayoutDataLogoImageType_gatsbyImageDataArgs = {
+  aspectRatio: InputMaybe<Scalars['Float']>;
+  backgroundColor: InputMaybe<Scalars['String']>;
+  breakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+  height: InputMaybe<Scalars['Int']>;
+  imgixParams: InputMaybe<ImgixParamsInput>;
+  layout: InputMaybe<GatsbyImageLayout>;
+  outputPixelDensities: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
+  placeholder: InputMaybe<ImgixPlaceholder>;
+  placeholderImgixParams: InputMaybe<ImgixParamsInput>;
+  sizes: InputMaybe<Scalars['String']>;
+  srcSetMaxWidth?: InputMaybe<Scalars['Int']>;
+  srcSetMinWidth?: InputMaybe<Scalars['Int']>;
+  width: InputMaybe<Scalars['Int']>;
+  widthTolerance?: InputMaybe<Scalars['Float']>;
+};
+
+
+type PrismicLayoutDataLogoImageType_urlArgs = {
+  imgixParams?: InputMaybe<ImgixParamsInput>;
+};
+
+type PrismicLayoutDataLogoImageTypeFilterInput = {
+  readonly alt: InputMaybe<StringQueryOperatorInput>;
+  readonly copyright: InputMaybe<StringQueryOperatorInput>;
+  readonly dimensions: InputMaybe<PrismicImageDimensionsTypeFilterInput>;
+  readonly fixed: InputMaybe<ImgixFixedFilterInput>;
+  readonly fluid: InputMaybe<ImgixFluidFilterInput>;
+  readonly gatsbyImageData: InputMaybe<JSONQueryOperatorInput>;
+  readonly localFile: InputMaybe<FileFilterInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicLayoutDataType = {
+  readonly description: Maybe<Scalars['String']>;
+  readonly logo: Maybe<PrismicLayoutDataLogoImageType>;
+  readonly title: Maybe<Scalars['String']>;
+};
+
+type PrismicLayoutDataTypeFilterInput = {
+  readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly logo: InputMaybe<PrismicLayoutDataLogoImageTypeFilterInput>;
+  readonly title: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicLayoutEdge = {
+  readonly next: Maybe<PrismicLayout>;
+  readonly node: PrismicLayout;
+  readonly previous: Maybe<PrismicLayout>;
+};
+
+type PrismicLayoutFieldsEnum =
+  | '_previewable'
+  | 'alternate_languages'
+  | 'alternate_languages.id'
+  | 'alternate_languages.lang'
+  | 'alternate_languages.raw'
+  | 'alternate_languages.type'
+  | 'alternate_languages.uid'
+  | 'children'
+  | 'children.children'
+  | 'children.children.children'
+  | 'children.children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.id'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.contentFilePath'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.children.parent.children'
+  | 'children.children.parent.id'
+  | 'children.id'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.contentFilePath'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'children.parent.children'
+  | 'children.parent.children.children'
+  | 'children.parent.children.id'
+  | 'children.parent.id'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.contentFilePath'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.parent.parent.children'
+  | 'children.parent.parent.id'
+  | 'dataRaw'
+  | 'data.description'
+  | 'data.logo.alt'
+  | 'data.logo.copyright'
+  | 'data.logo.dimensions.height'
+  | 'data.logo.dimensions.width'
+  | 'data.logo.fixed.base64'
+  | 'data.logo.fixed.height'
+  | 'data.logo.fixed.sizes'
+  | 'data.logo.fixed.src'
+  | 'data.logo.fixed.srcSet'
+  | 'data.logo.fixed.srcSetWebp'
+  | 'data.logo.fixed.srcWebp'
+  | 'data.logo.fixed.width'
+  | 'data.logo.fluid.aspectRatio'
+  | 'data.logo.fluid.base64'
+  | 'data.logo.fluid.sizes'
+  | 'data.logo.fluid.src'
+  | 'data.logo.fluid.srcSet'
+  | 'data.logo.fluid.srcSetWebp'
+  | 'data.logo.fluid.srcWebp'
+  | 'data.logo.gatsbyImageData'
+  | 'data.logo.localFile.absolutePath'
+  | 'data.logo.localFile.accessTime'
+  | 'data.logo.localFile.atime'
+  | 'data.logo.localFile.atimeMs'
+  | 'data.logo.localFile.base'
+  | 'data.logo.localFile.birthTime'
+  | 'data.logo.localFile.birthtime'
+  | 'data.logo.localFile.birthtimeMs'
+  | 'data.logo.localFile.blksize'
+  | 'data.logo.localFile.blocks'
+  | 'data.logo.localFile.changeTime'
+  | 'data.logo.localFile.children'
+  | 'data.logo.localFile.childrenImageSharp'
+  | 'data.logo.localFile.ctime'
+  | 'data.logo.localFile.ctimeMs'
+  | 'data.logo.localFile.dev'
+  | 'data.logo.localFile.dir'
+  | 'data.logo.localFile.ext'
+  | 'data.logo.localFile.extension'
+  | 'data.logo.localFile.gid'
+  | 'data.logo.localFile.id'
+  | 'data.logo.localFile.ino'
+  | 'data.logo.localFile.mode'
+  | 'data.logo.localFile.modifiedTime'
+  | 'data.logo.localFile.mtime'
+  | 'data.logo.localFile.mtimeMs'
+  | 'data.logo.localFile.name'
+  | 'data.logo.localFile.nlink'
+  | 'data.logo.localFile.prettySize'
+  | 'data.logo.localFile.publicURL'
+  | 'data.logo.localFile.rdev'
+  | 'data.logo.localFile.relativeDirectory'
+  | 'data.logo.localFile.relativePath'
+  | 'data.logo.localFile.root'
+  | 'data.logo.localFile.size'
+  | 'data.logo.localFile.sourceInstanceName'
+  | 'data.logo.localFile.uid'
+  | 'data.logo.localFile.url'
+  | 'data.logo.url'
+  | 'data.title'
+  | 'first_publication_date'
+  | 'href'
+  | 'id'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.contentFilePath'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'lang'
+  | 'last_publication_date'
+  | 'parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.id'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.contentFilePath'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.children.parent.children'
+  | 'parent.children.parent.id'
+  | 'parent.id'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.contentFilePath'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'parent.parent.children'
+  | 'parent.parent.children.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.id'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.contentFilePath'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.parent.id'
+  | 'prismicId'
+  | 'tags'
+  | 'type'
+  | 'url';
+
+type PrismicLayoutFilterInput = {
+  readonly _previewable: InputMaybe<IDQueryOperatorInput>;
+  readonly alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly data: InputMaybe<PrismicLayoutDataTypeFilterInput>;
+  readonly dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  readonly first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly href: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly lang: InputMaybe<StringQueryOperatorInput>;
+  readonly last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly prismicId: InputMaybe<IDQueryOperatorInput>;
+  readonly tags: InputMaybe<StringQueryOperatorInput>;
+  readonly type: InputMaybe<StringQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type PrismicLayoutGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<PrismicLayoutEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<PrismicLayoutGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<PrismicLayout>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type PrismicLayoutGroupConnection_distinctArgs = {
+  field: PrismicLayoutFieldsEnum;
+};
+
+
+type PrismicLayoutGroupConnection_groupArgs = {
+  field: PrismicLayoutFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type PrismicLayoutGroupConnection_maxArgs = {
+  field: PrismicLayoutFieldsEnum;
+};
+
+
+type PrismicLayoutGroupConnection_minArgs = {
+  field: PrismicLayoutFieldsEnum;
+};
+
+
+type PrismicLayoutGroupConnection_sumArgs = {
+  field: PrismicLayoutFieldsEnum;
+};
+
+type PrismicLayoutSortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<PrismicLayoutFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
 };
 
 type PrismicLinkType = {
@@ -2585,6 +3006,13 @@ type PrismicPageDataBodySlicesType = PrismicPageDataBodyIconLinks | PrismicPageD
 
 type PrismicPageDataType = {
   readonly body: ReadonlyArray<PrismicPageDataBodySlicesType>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
+};
+
+type PrismicPageDataTypeFilterInput = {
+  readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly title: InputMaybe<StringQueryOperatorInput>;
 };
 
 type PrismicPageEdge = {
@@ -2644,6 +3072,8 @@ type PrismicPageFieldsEnum =
   | 'children.parent.parent.children'
   | 'children.parent.parent.id'
   | 'dataRaw'
+  | 'data.description'
+  | 'data.title'
   | 'first_publication_date'
   | 'href'
   | 'id'
@@ -2709,6 +3139,7 @@ type PrismicPageFilterInput = {
   readonly _previewable: InputMaybe<IDQueryOperatorInput>;
   readonly alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
+  readonly data: InputMaybe<PrismicPageDataTypeFilterInput>;
   readonly dataRaw: InputMaybe<JSONQueryOperatorInput>;
   readonly first_publication_date: InputMaybe<DateQueryOperatorInput>;
   readonly href: InputMaybe<StringQueryOperatorInput>;
@@ -2996,12 +3427,16 @@ type PrismicPostDataBodySlicesType = PrismicPostDataBodyIconLinks | PrismicPostD
 type PrismicPostDataType = {
   readonly body: ReadonlyArray<PrismicPostDataBodySlicesType>;
   readonly description: Maybe<Scalars['String']>;
+  readonly description1: Maybe<Scalars['String']>;
   readonly title: Maybe<Scalars['String']>;
+  readonly title1: Maybe<Scalars['String']>;
 };
 
 type PrismicPostDataTypeFilterInput = {
   readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly description1: InputMaybe<StringQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
+  readonly title1: InputMaybe<StringQueryOperatorInput>;
 };
 
 type PrismicPostEdge = {
@@ -3062,7 +3497,9 @@ type PrismicPostFieldsEnum =
   | 'children.parent.parent.id'
   | 'dataRaw'
   | 'data.description'
+  | 'data.description1'
   | 'data.title'
+  | 'data.title1'
   | 'first_publication_date'
   | 'href'
   | 'id'
@@ -3426,6 +3863,7 @@ type Query = {
   readonly allFile: FileConnection;
   readonly allImageSharp: ImageSharpConnection;
   readonly allPrismicEmbedType: PrismicEmbedTypeConnection;
+  readonly allPrismicLayout: PrismicLayoutConnection;
   readonly allPrismicPage: PrismicPageConnection;
   readonly allPrismicPost: PrismicPostConnection;
   readonly allPrismicTypePathType: PrismicTypePathTypeConnection;
@@ -3438,6 +3876,7 @@ type Query = {
   readonly file: Maybe<File>;
   readonly imageSharp: Maybe<ImageSharp>;
   readonly prismicEmbedType: Maybe<PrismicEmbedType>;
+  readonly prismicLayout: Maybe<PrismicLayout>;
   readonly prismicPage: Maybe<PrismicPage>;
   readonly prismicPost: Maybe<PrismicPost>;
   readonly prismicTypePathType: Maybe<PrismicTypePathType>;
@@ -3478,6 +3917,14 @@ type Query_allPrismicEmbedTypeArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<PrismicEmbedTypeSortInput>;
+};
+
+
+type Query_allPrismicLayoutArgs = {
+  filter: InputMaybe<PrismicLayoutFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<PrismicLayoutSortInput>;
 };
 
 
@@ -3650,10 +4097,31 @@ type Query_prismicEmbedTypeArgs = {
 };
 
 
+type Query_prismicLayoutArgs = {
+  _previewable: InputMaybe<IDQueryOperatorInput>;
+  alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  data: InputMaybe<PrismicLayoutDataTypeFilterInput>;
+  dataRaw: InputMaybe<JSONQueryOperatorInput>;
+  first_publication_date: InputMaybe<DateQueryOperatorInput>;
+  href: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  lang: InputMaybe<StringQueryOperatorInput>;
+  last_publication_date: InputMaybe<DateQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prismicId: InputMaybe<IDQueryOperatorInput>;
+  tags: InputMaybe<StringQueryOperatorInput>;
+  type: InputMaybe<StringQueryOperatorInput>;
+  url: InputMaybe<StringQueryOperatorInput>;
+};
+
+
 type Query_prismicPageArgs = {
   _previewable: InputMaybe<IDQueryOperatorInput>;
   alternate_languages: InputMaybe<PrismicAlternateLanguageTypeFilterListInput>;
   children: InputMaybe<NodeFilterListInput>;
+  data: InputMaybe<PrismicPageDataTypeFilterInput>;
   dataRaw: InputMaybe<JSONQueryOperatorInput>;
   first_publication_date: InputMaybe<DateQueryOperatorInput>;
   href: InputMaybe<StringQueryOperatorInput>;
@@ -5076,14 +5544,14 @@ type PageQueryQueryVariables = Exact<{
 }>;
 
 
-type PageQueryQuery = { readonly prismicPage: { readonly data: { readonly body: ReadonlyArray<{ readonly id: string, readonly slice_type: string, readonly items: ReadonlyArray<{ readonly icon_image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null, readonly icon_link: { readonly url: string | null, readonly link_type: PrismicLinkTypeEnum | null, readonly document: { readonly id: string, readonly url: string | null } | { readonly id: string, readonly url: string | null } | null } | null }> } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null } } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly big_first_letter: boolean | null, readonly content: { readonly html: string | null } | null } }> } } | null };
+type PageQueryQuery = { readonly prismicPage: { readonly data: { readonly title: string | null, readonly description: string | null, readonly body: ReadonlyArray<{ readonly id: string, readonly slice_type: string, readonly items: ReadonlyArray<{ readonly icon_image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null, readonly icon_link: { readonly url: string | null, readonly link_type: PrismicLinkTypeEnum | null, readonly document: { readonly id: string, readonly url: string | null } | { readonly id: string, readonly url: string | null } | {} | null } | null }> } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null } } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly big_first_letter: boolean | null, readonly content: { readonly html: string | null } | null } }> } } | null };
 
 type PostQueryQueryVariables = Exact<{
   page_path: Scalars['String'];
 }>;
 
 
-type PostQueryQuery = { readonly prismicPost: { readonly last_publication_date: string, readonly data: { readonly title: string | null, readonly body: ReadonlyArray<{ readonly id: string, readonly slice_type: string, readonly items: ReadonlyArray<{ readonly icon_image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null, readonly icon_link: { readonly url: string | null, readonly link_type: PrismicLinkTypeEnum | null, readonly document: { readonly id: string, readonly url: string | null } | { readonly id: string, readonly url: string | null } | null } | null }> } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null } } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly big_first_letter: boolean | null, readonly content: { readonly html: string | null } | null } }> } } | null };
+type PostQueryQuery = { readonly prismicPost: { readonly last_publication_date: string, readonly data: { readonly title: string | null, readonly title1: string | null, readonly description1: string | null, readonly body: ReadonlyArray<{ readonly id: string, readonly slice_type: string, readonly items: ReadonlyArray<{ readonly icon_image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null, readonly icon_link: { readonly url: string | null, readonly link_type: PrismicLinkTypeEnum | null, readonly document: { readonly id: string, readonly url: string | null } | { readonly id: string, readonly url: string | null } | {} | null } | null }> } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null } } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly big_first_letter: boolean | null, readonly content: { readonly html: string | null } | null } }> } } | null };
 
 type PostsPageQueryQueryVariables = Exact<{
   skip: Scalars['Int'];
@@ -5091,6 +5559,11 @@ type PostsPageQueryQueryVariables = Exact<{
 
 
 type PostsPageQueryQuery = { readonly allPrismicPost: { readonly edges: ReadonlyArray<{ readonly node: { readonly url: string | null, readonly last_publication_date: string, readonly data: { readonly title: string | null, readonly description: string | null } } }>, readonly pageInfo: { readonly currentPage: number, readonly pageCount: number } } };
+
+type SEOQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SEOQueryQuery = { readonly prismicLayout: { readonly data: { readonly title: string | null, readonly description: string | null, readonly logo: { readonly localFile: { readonly publicURL: string | null } | null } | null } } | null };
 
 type SlugsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
