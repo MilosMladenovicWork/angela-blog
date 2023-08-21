@@ -20,6 +20,7 @@ module.exports = {
     },
   },
   plugins: [
+    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-theme-material-ui`,
       options: {
