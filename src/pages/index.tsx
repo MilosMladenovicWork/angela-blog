@@ -37,7 +37,6 @@ export default function Home({
       direction="column"
       justifyContent="space-between"
     >
-      <Seo />
       <Grid item sx={{ marginBottom: 16 }}>
         <BlogList items={items} />
       </Grid>
@@ -49,6 +48,8 @@ export default function Home({
     </Grid>
   )
 }
+
+export const Head = () => <Seo />
 
 export const LandingPageQuery = graphql`
   query LandingPageQuery {

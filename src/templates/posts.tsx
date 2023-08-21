@@ -37,7 +37,6 @@ export default function PostsPage({
       direction="column"
       justifyContent="space-between"
     >
-      <Seo />
       <Grid item sx={{ marginBottom: 16 }}>
         <BlogList items={items} />
       </Grid>
@@ -49,6 +48,8 @@ export default function PostsPage({
     </Grid>
   )
 }
+
+export const Head = () => <Seo />
 
 export const PostsPageQuery = graphql`
   query PostsPageQuery($skip: Int!) {

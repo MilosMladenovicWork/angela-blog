@@ -6,7 +6,6 @@
  */
 import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
-import { Helmet } from "react-helmet"
 
 type SeoProps = {
   description?: string | null
@@ -41,74 +40,24 @@ const Seo = ({ description, title }: SeoProps) => {
   const logo = prismicLayout?.data.logo?.localFile?.publicURL || undefined
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang: "en",
-      }}
-      title={metaTitle}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: metaTitle,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          property: `og:image`,
-          content: logo,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:title`,
-          content: metaTitle,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-        {
-          name: `theme-color`,
-          content: "#F5E9E9",
-        },
-      ]}
-      link={[
-        {
-          rel: "apple-touch-icon",
-          sizes: "180x180",
-          href: logo,
-        },
-        {
-          rel: "icon",
-          type: "image/png",
-          sizes: "32x32",
-          href: logo,
-        },
-        {
-          rel: "icon",
-          type: "image/png",
-          sizes: "16x16",
-          href: logo,
-        },
-        {
-          rel: "mask-icon",
-          color: "#F5E9E9",
-          href: logo,
-        },
-      ]}
-    />
+    <>
+      <title>{metaTitle}</title>
+      <meta name="description" content={metaDescription} />
+      <meta name="image" content={logo} />
+      <meta name="twitter:card" content={logo} />
+      <meta name="twitter:title" content={metaTitle} />
+      <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:image" content={logo} />
+      <meta name="og:title" content={metaTitle} />
+      <meta name="og:description" content={metaDescription} />
+      <meta name="og:type" content="website" />
+      <meta name="og:image" content={logo} />
+      <meta name="theme-color" content="#F5E9E9" />
+      <link rel="apple-touch-icon" href={logo} sizes="180x180" />
+      <link rel="icon" href={logo} type="image/png" sizes="32x32" />
+      <link rel="icon" href={logo} type="image/png" sizes="16x16" />
+      <link rel="mask-icon" href={logo} color="#F5E9E9" />
+    </>
   )
 }
 

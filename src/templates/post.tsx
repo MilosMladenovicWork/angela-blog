@@ -4,9 +4,9 @@ import { PageProps, graphql } from "gatsby"
 import React from "react"
 import { CmsSlices } from "../components/CmsSlices"
 import Link from "../components/Link"
+import Seo from "../components/Seo"
 import StaggerAnimationGrid from "../components/StaggerAnimationGrid"
 import { appearAnimationVariants } from "../gatsby-theme-material-ui-top-layout/theme"
-import Seo from "../components/Seo"
 
 const MotionGrid = motion(Grid)
 
@@ -14,10 +14,6 @@ export default function PostPage({ data }: PageProps<Queries.PostQueryQuery>) {
   return (
     <main>
       <StaggerAnimationGrid container direction="column" rowSpacing={2}>
-        <Seo
-          title={data.prismicPost?.data.title1}
-          description={data.prismicPost?.data.description1}
-        />
         <MotionGrid item variants={appearAnimationVariants}>
           <Link sx={{ textDecoration: "underline" }} variant="body1" to="/">
             back
@@ -38,6 +34,13 @@ export default function PostPage({ data }: PageProps<Queries.PostQueryQuery>) {
     </main>
   )
 }
+
+export const Head = ({ data }: PageProps<Queries.PostQueryQuery>) => (
+  <Seo
+    title={data.prismicPost?.data.title1}
+    description={data.prismicPost?.data.description1}
+  />
+)
 
 export const PostQuery = graphql`
   query PostQuery($page_path: String!) {

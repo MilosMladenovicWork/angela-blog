@@ -14,10 +14,6 @@ export default function Page({ data }: PageProps<Queries.PageQueryQuery>) {
   return (
     <main>
       <StaggerAnimationGrid container direction="row" rowSpacing={3}>
-        <Seo
-          title={data.prismicPage?.data.title}
-          description={data.prismicPage?.data.description}
-        />
         <MotionGrid item xs={12} variants={appearAnimationVariants}>
           <Link sx={{ textDecoration: "underline" }} variant="body1" to="/">
             back
@@ -28,6 +24,13 @@ export default function Page({ data }: PageProps<Queries.PageQueryQuery>) {
     </main>
   )
 }
+
+export const Head = ({ data }: PageProps<Queries.PageQueryQuery>) => (
+  <Seo
+    title={data.prismicPage?.data.title}
+    description={data.prismicPage?.data.description}
+  />
+)
 
 export const PageQuery = graphql`
   query PageQuery($page_path: String!) {
