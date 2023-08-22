@@ -20,9 +20,7 @@ const Seo = ({ description, title }: SeoProps) => {
         prismicLayout {
           data {
             logo {
-              localFile {
-                publicURL
-              }
+              url
             }
             title
             description
@@ -37,7 +35,7 @@ const Seo = ({ description, title }: SeoProps) => {
 
   const metaTitle = title || prismicLayout?.data.title || undefined
 
-  const logo = prismicLayout?.data.logo?.localFile?.publicURL || undefined
+  const logo = prismicLayout?.data.logo?.url || undefined
 
   return (
     <>

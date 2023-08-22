@@ -37,16 +37,14 @@ module.exports = {
       },
     },
     `gatsby-plugin-layout`,
-    // "gatsby-plugin-google-gtag",
-    `gatsby-plugin-image`,
-    "gatsby-plugin-sitemap",
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        trackingIds: ["G-N9QDDWNQHK"],
       },
     },
+    `gatsby-plugin-image`,
+    "gatsby-plugin-sitemap",
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -60,27 +58,13 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `Diary of an Existentialist`,
-        short_name: `DoE`,
-        start_url: `/`,
-        background_color: `#282828`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        theme_color: `#F5E9E9`,
-        display: `minimal-ui`,
-        icon: `src/images/icon.png`, // This path is relative to the root of the site.
-      },
-    },
-    {
       resolve: "gatsby-source-prismic",
       options: {
         repositoryName: process.env.PRISMIC_REPO_NAME,
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
         customTypesApiToken: process.env.PRISMIC_CUSTOM_TYPES_API_TOKEN,
         linkResolver: (doc: PrismicDocumentNodeInput) => linkResolver(doc),
-        shouldDownloadFiles: true,
+        shouldDownloadFiles: false,
       },
     },
   ],

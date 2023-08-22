@@ -50,18 +50,7 @@ export const PageQuery = graphql`
                 gatsbyImageData(width: 200)
               }
               icon_link {
-                document {
-                  ... on PrismicPost {
-                    id
-                    url
-                  }
-                  ... on PrismicPage {
-                    id
-                    url
-                  }
-                }
                 url
-                link_type
               }
             }
           }

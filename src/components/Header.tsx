@@ -1,10 +1,41 @@
 import { AppBar } from "@mui/material"
-import React from "react"
-import { getNavigationData } from "../utils/getNavigationData"
+import { graphql, useStaticQuery } from "gatsby"
+import { isNil } from "lodash"
+import React, { useMemo } from "react"
 import { HeaderToolbar } from "./HeaderToolbar"
 
 export const Header = () => {
-  const data = getNavigationData()
+  const { prismicLayout } = useStaticQuery<Queries.HeaderQueryQuery>(
+    graphql`
+      query HeaderQuery {
+        prismicLayout {
+          data {
+            title
+            navigation_links {
+              label
+              link {
+                url
+              }
+            }
+          }
+        }
+      }
+    `
+  )
+
+  const navigationLinks = useMemo(() => {
+    const navigationLinks = prismicLayout?.data.navigation_links
+    if (!isNil(navigationLinks)) {
+      return navigationLinks.map(navigationLink => ({
+        text: navigationLink?.label,
+        href: navigationLink?.link?.url,
+      }))
+    }
+
+    return []
+  }, [])
+
+  console.log(navigationLinks)
 
   return (
     <AppBar
@@ -18,7 +49,10 @@ export const Header = () => {
       }}
       position="sticky"
     >
-      <HeaderToolbar navigationLinks={data.navigationLinks} />
+      <HeaderToolbar
+        title={prismicLayout?.data.title}
+        navigationLinks={navigationLinks}
+      />
     </AppBar>
   )
 }

@@ -429,8 +429,6 @@ type File = Node & {
   readonly birthtime: Maybe<Scalars['Date']>;
   /** @deprecated Use `birthTime` instead */
   readonly birthtimeMs: Maybe<Scalars['Float']>;
-  readonly blksize: Maybe<Scalars['Int']>;
-  readonly blocks: Maybe<Scalars['Int']>;
   readonly changeTime: Scalars['Date'];
   /** Returns the first child node of type ImageSharp or null if there are no children of given type on this node */
   readonly childImageSharp: Maybe<ImageSharp>;
@@ -455,8 +453,6 @@ type File = Node & {
   readonly nlink: Scalars['Int'];
   readonly parent: Maybe<Node>;
   readonly prettySize: Scalars['String'];
-  /** Copy file to static directory and return public url to it */
-  readonly publicURL: Maybe<Scalars['String']>;
   readonly rdev: Scalars['Int'];
   readonly relativeDirectory: Scalars['String'];
   readonly relativePath: Scalars['String'];
@@ -464,7 +460,6 @@ type File = Node & {
   readonly size: Scalars['Int'];
   readonly sourceInstanceName: Scalars['String'];
   readonly uid: Scalars['Int'];
-  readonly url: Maybe<Scalars['String']>;
 };
 
 
@@ -577,8 +572,6 @@ type FileFieldsEnum =
   | 'birthTime'
   | 'birthtime'
   | 'birthtimeMs'
-  | 'blksize'
-  | 'blocks'
   | 'changeTime'
   | 'childImageSharp.children'
   | 'childImageSharp.children.children'
@@ -835,15 +828,13 @@ type FileFieldsEnum =
   | 'parent.parent.parent.children'
   | 'parent.parent.parent.id'
   | 'prettySize'
-  | 'publicURL'
   | 'rdev'
   | 'relativeDirectory'
   | 'relativePath'
   | 'root'
   | 'size'
   | 'sourceInstanceName'
-  | 'uid'
-  | 'url';
+  | 'uid';
 
 type FileFilterInput = {
   readonly absolutePath: InputMaybe<StringQueryOperatorInput>;
@@ -854,8 +845,6 @@ type FileFilterInput = {
   readonly birthTime: InputMaybe<DateQueryOperatorInput>;
   readonly birthtime: InputMaybe<DateQueryOperatorInput>;
   readonly birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
-  readonly blksize: InputMaybe<IntQueryOperatorInput>;
-  readonly blocks: InputMaybe<IntQueryOperatorInput>;
   readonly changeTime: InputMaybe<DateQueryOperatorInput>;
   readonly childImageSharp: InputMaybe<ImageSharpFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
@@ -878,7 +867,6 @@ type FileFilterInput = {
   readonly nlink: InputMaybe<IntQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly prettySize: InputMaybe<StringQueryOperatorInput>;
-  readonly publicURL: InputMaybe<StringQueryOperatorInput>;
   readonly rdev: InputMaybe<IntQueryOperatorInput>;
   readonly relativeDirectory: InputMaybe<StringQueryOperatorInput>;
   readonly relativePath: InputMaybe<StringQueryOperatorInput>;
@@ -886,7 +874,6 @@ type FileFilterInput = {
   readonly size: InputMaybe<IntQueryOperatorInput>;
   readonly sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
   readonly uid: InputMaybe<IntQueryOperatorInput>;
-  readonly url: InputMaybe<StringQueryOperatorInput>;
 };
 
 type FileGroupConnection = {
@@ -2503,15 +2490,31 @@ type PrismicLayoutDataLogoImageTypeFilterInput = {
   readonly url: InputMaybe<StringQueryOperatorInput>;
 };
 
+type PrismicLayoutDataNavigationLinks = {
+  readonly label: Maybe<Scalars['String']>;
+  readonly link: Maybe<PrismicLinkType>;
+};
+
+type PrismicLayoutDataNavigationLinksFilterInput = {
+  readonly label: InputMaybe<StringQueryOperatorInput>;
+  readonly link: InputMaybe<PrismicLinkTypeFilterInput>;
+};
+
+type PrismicLayoutDataNavigationLinksFilterListInput = {
+  readonly elemMatch: InputMaybe<PrismicLayoutDataNavigationLinksFilterInput>;
+};
+
 type PrismicLayoutDataType = {
   readonly description: Maybe<Scalars['String']>;
   readonly logo: Maybe<PrismicLayoutDataLogoImageType>;
+  readonly navigation_links: Maybe<ReadonlyArray<Maybe<PrismicLayoutDataNavigationLinks>>>;
   readonly title: Maybe<Scalars['String']>;
 };
 
 type PrismicLayoutDataTypeFilterInput = {
   readonly description: InputMaybe<StringQueryOperatorInput>;
   readonly logo: InputMaybe<PrismicLayoutDataLogoImageTypeFilterInput>;
+  readonly navigation_links: InputMaybe<PrismicLayoutDataNavigationLinksFilterListInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
 };
 
@@ -2601,8 +2604,6 @@ type PrismicLayoutFieldsEnum =
   | 'data.logo.localFile.birthTime'
   | 'data.logo.localFile.birthtime'
   | 'data.logo.localFile.birthtimeMs'
-  | 'data.logo.localFile.blksize'
-  | 'data.logo.localFile.blocks'
   | 'data.logo.localFile.changeTime'
   | 'data.logo.localFile.children'
   | 'data.logo.localFile.childrenImageSharp'
@@ -2622,7 +2623,6 @@ type PrismicLayoutFieldsEnum =
   | 'data.logo.localFile.name'
   | 'data.logo.localFile.nlink'
   | 'data.logo.localFile.prettySize'
-  | 'data.logo.localFile.publicURL'
   | 'data.logo.localFile.rdev'
   | 'data.logo.localFile.relativeDirectory'
   | 'data.logo.localFile.relativePath'
@@ -2630,8 +2630,21 @@ type PrismicLayoutFieldsEnum =
   | 'data.logo.localFile.size'
   | 'data.logo.localFile.sourceInstanceName'
   | 'data.logo.localFile.uid'
-  | 'data.logo.localFile.url'
   | 'data.logo.url'
+  | 'data.navigation_links'
+  | 'data.navigation_links.label'
+  | 'data.navigation_links.link.id'
+  | 'data.navigation_links.link.isBroken'
+  | 'data.navigation_links.link.lang'
+  | 'data.navigation_links.link.link_type'
+  | 'data.navigation_links.link.raw'
+  | 'data.navigation_links.link.size'
+  | 'data.navigation_links.link.slug'
+  | 'data.navigation_links.link.tags'
+  | 'data.navigation_links.link.target'
+  | 'data.navigation_links.link.type'
+  | 'data.navigation_links.link.uid'
+  | 'data.navigation_links.link.url'
   | 'data.title'
   | 'first_publication_date'
   | 'href'
@@ -2780,6 +2793,29 @@ type PrismicLinkTypeEnum =
   | 'Document'
   | 'Media'
   | 'Web';
+
+type PrismicLinkTypeEnumQueryOperatorInput = {
+  readonly eq: InputMaybe<PrismicLinkTypeEnum>;
+  readonly in: InputMaybe<ReadonlyArray<InputMaybe<PrismicLinkTypeEnum>>>;
+  readonly ne: InputMaybe<PrismicLinkTypeEnum>;
+  readonly nin: InputMaybe<ReadonlyArray<InputMaybe<PrismicLinkTypeEnum>>>;
+};
+
+type PrismicLinkTypeFilterInput = {
+  readonly id: InputMaybe<IDQueryOperatorInput>;
+  readonly isBroken: InputMaybe<BooleanQueryOperatorInput>;
+  readonly lang: InputMaybe<StringQueryOperatorInput>;
+  readonly link_type: InputMaybe<PrismicLinkTypeEnumQueryOperatorInput>;
+  readonly localFile: InputMaybe<FileFilterInput>;
+  readonly raw: InputMaybe<JSONQueryOperatorInput>;
+  readonly size: InputMaybe<IntQueryOperatorInput>;
+  readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly tags: InputMaybe<StringQueryOperatorInput>;
+  readonly target: InputMaybe<StringQueryOperatorInput>;
+  readonly type: InputMaybe<StringQueryOperatorInput>;
+  readonly uid: InputMaybe<StringQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
 
 type PrismicPage = Node & {
   readonly _previewable: Scalars['ID'];
@@ -4040,8 +4076,6 @@ type Query_fileArgs = {
   birthTime: InputMaybe<DateQueryOperatorInput>;
   birthtime: InputMaybe<DateQueryOperatorInput>;
   birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
-  blksize: InputMaybe<IntQueryOperatorInput>;
-  blocks: InputMaybe<IntQueryOperatorInput>;
   changeTime: InputMaybe<DateQueryOperatorInput>;
   childImageSharp: InputMaybe<ImageSharpFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
@@ -4064,7 +4098,6 @@ type Query_fileArgs = {
   nlink: InputMaybe<IntQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   prettySize: InputMaybe<StringQueryOperatorInput>;
-  publicURL: InputMaybe<StringQueryOperatorInput>;
   rdev: InputMaybe<IntQueryOperatorInput>;
   relativeDirectory: InputMaybe<StringQueryOperatorInput>;
   relativePath: InputMaybe<StringQueryOperatorInput>;
@@ -4072,7 +4105,6 @@ type Query_fileArgs = {
   size: InputMaybe<IntQueryOperatorInput>;
   sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
   uid: InputMaybe<IntQueryOperatorInput>;
-  url: InputMaybe<StringQueryOperatorInput>;
 };
 
 
@@ -5479,11 +5511,6 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
-type BioQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BioQueryQuery = { readonly site: { readonly siteMetadata: { readonly author: { readonly name: string | null } | null, readonly social: { readonly twitter: string | null } | null } | null } | null };
-
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
 type GatsbyImageSharpFixed_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
@@ -5534,6 +5561,11 @@ type GatsbyPrismicImageFluid_withWebpFragment = { readonly aspectRatio: number, 
 
 type GatsbyPrismicImageFluid_withWebp_noBase64Fragment = { readonly aspectRatio: number, readonly src: string, readonly srcWebp: string, readonly srcSet: string, readonly srcSetWebp: string, readonly sizes: string };
 
+type HeaderQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type HeaderQueryQuery = { readonly prismicLayout: { readonly data: { readonly title: string | null, readonly navigation_links: ReadonlyArray<{ readonly label: string | null, readonly link: { readonly url: string | null } | null } | null> | null } } | null };
+
 type LandingPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5544,14 +5576,14 @@ type PageQueryQueryVariables = Exact<{
 }>;
 
 
-type PageQueryQuery = { readonly prismicPage: { readonly data: { readonly title: string | null, readonly description: string | null, readonly body: ReadonlyArray<{ readonly id: string, readonly slice_type: string, readonly items: ReadonlyArray<{ readonly icon_image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null, readonly icon_link: { readonly url: string | null, readonly link_type: PrismicLinkTypeEnum | null, readonly document: { readonly id: string, readonly url: string | null } | { readonly id: string, readonly url: string | null } | {} | null } | null }> } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null } } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly big_first_letter: boolean | null, readonly content: { readonly html: string | null } | null } }> } } | null };
+type PageQueryQuery = { readonly prismicPage: { readonly data: { readonly title: string | null, readonly description: string | null, readonly body: ReadonlyArray<{ readonly id: string, readonly slice_type: string, readonly items: ReadonlyArray<{ readonly icon_image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null, readonly icon_link: { readonly url: string | null } | null }> } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null } } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly big_first_letter: boolean | null, readonly content: { readonly html: string | null } | null } }> } } | null };
 
 type PostQueryQueryVariables = Exact<{
   page_path: Scalars['String'];
 }>;
 
 
-type PostQueryQuery = { readonly prismicPost: { readonly last_publication_date: string, readonly data: { readonly title: string | null, readonly title1: string | null, readonly description1: string | null, readonly body: ReadonlyArray<{ readonly id: string, readonly slice_type: string, readonly items: ReadonlyArray<{ readonly icon_image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null, readonly icon_link: { readonly url: string | null, readonly link_type: PrismicLinkTypeEnum | null, readonly document: { readonly id: string, readonly url: string | null } | { readonly id: string, readonly url: string | null } | {} | null } | null }> } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null } } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly big_first_letter: boolean | null, readonly content: { readonly html: string | null } | null } }> } } | null };
+type PostQueryQuery = { readonly prismicPost: { readonly last_publication_date: string, readonly data: { readonly title: string | null, readonly title1: string | null, readonly description1: string | null, readonly body: ReadonlyArray<{ readonly id: string, readonly slice_type: string, readonly items: ReadonlyArray<{ readonly icon_image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null, readonly icon_link: { readonly url: string | null } | null }> } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly image: { readonly alt: string | null, readonly gatsbyImageData: Record<string, unknown> | null, readonly dimensions: { readonly height: number, readonly width: number } | null } | null } } | { readonly id: string, readonly slice_type: string, readonly primary: { readonly big_first_letter: boolean | null, readonly content: { readonly html: string | null } | null } }> } } | null };
 
 type PostsPageQueryQueryVariables = Exact<{
   skip: Scalars['Int'];
@@ -5563,7 +5595,7 @@ type PostsPageQueryQuery = { readonly allPrismicPost: { readonly edges: Readonly
 type SEOQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SEOQueryQuery = { readonly prismicLayout: { readonly data: { readonly title: string | null, readonly description: string | null, readonly logo: { readonly localFile: { readonly publicURL: string | null } | null } | null } } | null };
+type SEOQueryQuery = { readonly prismicLayout: { readonly data: { readonly title: string | null, readonly description: string | null, readonly logo: { readonly url: string | null } | null } } | null };
 
 type SlugsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
