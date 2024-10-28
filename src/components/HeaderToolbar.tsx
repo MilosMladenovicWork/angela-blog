@@ -28,7 +28,7 @@ export const HeaderToolbar = ({
           textAlign="center"
           variants={appearAnimationVariants}
         >
-          <Typography variant="h3" component={Link} to="/">
+          <Typography variant="h2" component={Link} to="/">
             {title}
           </Typography>
         </MotionGrid>

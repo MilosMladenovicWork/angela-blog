@@ -28,8 +28,12 @@ module.exports = {
           fonts: {
             google: [
               {
-                family: `Abhaya Libre`,
-                variants: [`500`, `800`],
+                family: `Pinyon Script`,
+                variants: [`400`],
+              },
+              {
+                family: `Lancelot`,
+                variants: [`400`],
               },
             ],
           },

@@ -38,7 +38,9 @@ export default function BlogListItem({
         variants={appearAnimationVariants}
       >
         <Grid item>
-          <Typography variant="h2">{title}</Typography>
+          <Typography variant="h3" component="h2">
+            {title}
+          </Typography>
         </Grid>
         <Grid container alignItems="center">
           <Grid item xs={4}>

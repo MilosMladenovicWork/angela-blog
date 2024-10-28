@@ -7,18 +7,19 @@ export const appearAnimationVariants = {
 
 const theme = createTheme({
   typography: {
-    fontFamily: "Abhaya Libre",
+    fontFamily: "Lancelot",
   },
   palette: {
-    primary: { main: "#999999" },
-    secondary: { main: "#111111" },
+    primary: { main: "#1C135D" },
+    secondary: { main: "#1C135D" },
     background: { default: "#FAFDFF", paper: "#FAFDFFE6" },
     text: { primary: "#1C135D" },
   },
 })
 
 theme.typography.h1 = {
-  fontWeight: "800",
+  fontFamily: "Pinyon Script",
+  fontWeight: 400,
   fontSize: "2.7rem",
   [theme.breakpoints.up("sm")]: {
     fontSize: "2.9rem",
@@ -29,7 +30,8 @@ theme.typography.h1 = {
 }
 
 theme.typography.h2 = {
-  fontWeight: "800",
+  fontFamily: "Pinyon Script",
+  fontWeight: 400,
   fontSize: "2.5rem",
   [theme.breakpoints.up("sm")]: {
     fontSize: "2.7rem",
@@ -40,7 +42,8 @@ theme.typography.h2 = {
 }
 
 theme.typography.h3 = {
-  fontWeight: "800",
+  fontFamily: "Pinyon Script",
+  fontWeight: 400,
   fontSize: "1.6rem",
   [theme.breakpoints.up("sm")]: {
     fontSize: "1.8rem",
@@ -51,7 +54,8 @@ theme.typography.h3 = {
 }
 
 theme.typography.h4 = {
-  fontWeight: "800",
+  fontFamily: "Pinyon Script",
+  fontWeight: 400,
   fontSize: "1.5rem",
   [theme.breakpoints.up("sm")]: {
     fontSize: "1.7rem",
@@ -62,7 +66,8 @@ theme.typography.h4 = {
 }
 
 theme.typography.h5 = {
-  fontWeight: "800",
+  fontFamily: "Pinyon Script",
+  fontWeight: 400,
   fontSize: "1.4rem",
   [theme.breakpoints.up("sm")]: {
     fontSize: "1.6rem",
@@ -73,7 +78,8 @@ theme.typography.h5 = {
 }
 
 theme.typography.h6 = {
-  fontWeight: "800",
+  fontFamily: "Pinyon Script",
+  fontWeight: 400,
   fontSize: "1.3rem",
   [theme.breakpoints.up("sm")]: {
     fontSize: "1.5rem",
