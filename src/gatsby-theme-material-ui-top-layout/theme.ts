@@ -89,4 +89,8 @@ theme.typography.h6 = {
   },
 }
 
+theme.typography.body1 = {
+  minHeight: "1rem",
+}
+
 export default theme
