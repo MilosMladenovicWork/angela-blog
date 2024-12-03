@@ -3,6 +3,7 @@ import { isNil } from "lodash"
 import Markdown from "markdown-to-jsx"
 import React, { useMemo } from "react"
 import Link from "./Link"
+import { decode } from "html-entities"
 
 export type RichTextProps = {
   text: string
@@ -102,7 +103,7 @@ const RichText = ({ text, textProps }: RichTextProps) => {
         },
       }}
     >
-      {text}
+      {decode(text)}
     </Markdown>
   )
 }
