@@ -20,7 +20,12 @@ export default function Post({
   htmlContent,
 }: PostProps) {
   return (
-    <StaggerAnimationGrid container direction="column" rowSpacing={2}>
+    <StaggerAnimationGrid
+      container
+      direction="column"
+      rowSpacing={2}
+      sx={{ paddingBottom: { xs: 5, sm: 15 } }}
+    >
       <MotionGrid item variants={appearAnimationVariants}>
         <Link sx={{ textDecoration: "underline" }} variant="body1" to="/">
           back

@@ -13,7 +13,12 @@ const MotionGrid = motion(Grid)
 export default function Page({ data }: PageProps<Queries.PageQueryQuery>) {
   return (
     <main>
-      <StaggerAnimationGrid container direction="row" rowSpacing={3}>
+      <StaggerAnimationGrid
+        container
+        direction="row"
+        rowSpacing={3}
+        sx={{ paddingBottom: { xs: 5, sm: 15 } }}
+      >
         <MotionGrid item xs={12} variants={appearAnimationVariants}>
           <Link sx={{ textDecoration: "underline" }} variant="body1" to="/">
             back

@@ -13,7 +13,7 @@ export interface BlogItemData {
 
 export default function BlogList({ items }: { items: BlogItemData[] }) {
   return (
-    <StaggerAnimationGrid>
+    <StaggerAnimationGrid sx={{ paddingBottom: { xs: 5, sm: 15 } }}>
       <List>
         {items.map(({ id, title, shortDescription, description, href }) => (
           <BlogListItem
